@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:smp_todo/todo_model.dart';
+import 'package:smp_todo/model/todo_model.dart';
 
-import 'todo_provider.dart';
+import 'providers/todo_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,6 +41,16 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController eventTypeController = TextEditingController();
   DateTime scheduleDate = DateTime.now();
+
+  void fetchTodo() async {
+    await Provider.of<TodoProvider>(context, listen: false).fetchTodoFromDB();
+  }
+
+  @override
+  void initState() {
+    fetchTodo();
+    super.initState();
+  }
 
   @override
   void dispose() {

@@ -16,6 +16,17 @@ class TodoModel {
       required this.eventType,
       required this.isDone});
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'creationDate': creationDate.toIso8601String(),
+      'scheduleDate': scheduleDate.toIso8601String(),
+      'description': description,
+      'eventType': eventType,
+    };
+  }
+
   // factory TodoModel.fromJson(Map<String, dynamic> json) {
   //   return TodoModel(
   //       title: json['title'],
